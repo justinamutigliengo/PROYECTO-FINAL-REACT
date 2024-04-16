@@ -40,6 +40,11 @@ export default function NavBar() {
                     <Link to={"/products/pantalones"}>Pantalones</Link>
                   </button>
                 </li>
+                <li className="nav-item">
+                  <button className="nav-link active" aria-current="page">
+                    <Link to={"/products/sweaters"}>Sweaters</Link>
+                  </button>
+                </li>
               </ul>
             </div>
             <li>

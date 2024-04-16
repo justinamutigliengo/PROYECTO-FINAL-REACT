@@ -1,8 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
+// import { getProducts } from "../../asyncMock";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 import "./ItemListContainer.css";
-import { getProducts } from "../../asyncMock";
 
 export default function ItemListContainer({ greeting }) {
   const { id, category } = useParams();
@@ -11,19 +13,31 @@ export default function ItemListContainer({ greeting }) {
 
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-
-
   useEffect(() => {
-    getProducts().then((data) => {
-      setProducts(data);
-      if (category) {
-        setFilteredProducts(
-          data.filter((product) => product.category === category)
-        );
-      } else {
-        setFilteredProducts(data);
-      }
+    const productosRef = collection(db, "products");
+
+    const q = category
+      ? query(productosRef, where("category", "==", category))
+      : productosRef;
+
+    getDocs(q).then((resp) => {
+      setProducts(
+        resp.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        })
+      );
     });
+
+    // getProducts().then((data) => {
+    //   setProducts(data);
+    //   if (category) {
+    //     setFilteredProducts(
+    //       data.filter((product) => product.category === category)
+    //     );
+    //   } else {
+    //     setFilteredProducts(data);
+    //   }
+    // });
   }, [category]);
 
   const navigate = useNavigate();
@@ -39,7 +53,7 @@ export default function ItemListContainer({ greeting }) {
           <h1>Productos {category ? `de ${category}` : ""}</h1>
           <h2 className="text-center">{greeting}</h2>
         </section>
-        <ItemList products={filteredProducts} handleClick={handleClick} />
+        <ItemList products={products} handleClick={handleClick} />
       </div>
     </>
   );

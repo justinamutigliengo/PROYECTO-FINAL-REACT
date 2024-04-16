@@ -22,7 +22,7 @@ export default function ItemDetail({ product }) {
         <h3 className="titulo">{product.title}</h3>
         <img src={product.image} alt={product.title} />
         <div>
-          <p className="descripcion">{product.descripcion}</p>
+          <p className="description">{product.description}</p>
           <p className="categoria">Categoría: {product.category}</p>
           <p className="precio">${product.price}</p>
 

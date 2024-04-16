@@ -14,7 +14,7 @@ export default function Carrito() {
       <h1 className="main-title">Carrito</h1>
 
       {carrito.map((prod) => (
-        <div key={prod.id}>
+        <div key={`${prod.id}-${prod.title}`}>
           <br />
           <h3>{prod.title}</h3>
           <p>Precio unitario: ${prod.price}</p>

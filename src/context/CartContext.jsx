@@ -53,36 +53,3 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
-///////////////////
-// export default function CartContext () {
-//     const [carrito, setCarrito] = useState([]);
-
-//     const agregarAlCarrito = (product, cantidad) => {
-//       const itemAgregado = { ...product, cantidad };
-
-//       const nuevoCarrito = [...carrito];
-//       const estaEnElCarrito = nuevoCarrito.find(
-//         (producto) => producto.id === itemAgregado.id
-//       );
-
-//       if (estaEnElCarrito) {
-//         estaEnElCarrito.cantidad += cantidad;
-//       } else {
-//         nuevoCarrito.push(itemAgregado);
-//       }
-//       setCarrito(nuevoCarrito);
-//     };
-
-//     const cantidadEnCarrito = () => {
-//       return carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
-//     };
-
-//     const precioTotal = () => {
-//       return carrito.reduce((acc, prod) => acc + prod.price * prod.cantidad, 0);
-//     };
-
-//     const vaciarCarrito = () => {
-//       setCarrito([]);
-//     };
-// }
