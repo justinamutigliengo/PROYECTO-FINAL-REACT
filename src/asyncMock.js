@@ -32,7 +32,7 @@ const products = [
     price: 23000,
     category: "tops",
     description: "Talles: XS, S, M, L",
-    image: "../src/assets/images/top1.webp",
+    image: "../src/assets/images/top4.webp",
     stock: 20,
   },
   {
@@ -84,7 +84,3 @@ export const getProducts = () => {
 export const getProduct = (id) => {
   return products.find((prod) => prod.id == id);
 };
-
-// export const getProductByCategory = (category) => {
-//   return products.find((prod) => prod.category == category);
-// };

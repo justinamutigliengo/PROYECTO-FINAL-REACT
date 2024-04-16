@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../asyncMock";
+import ItemDetail from "../ItemDetail/ItemDetail";
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
@@ -13,13 +14,7 @@ export default function ItemDetailContainer() {
 
   return (
     <>
-      <div>
-        <h3>Nombre: {product.title}</h3>
-        <img src={product.image} alt={product.title} />
-        <p>{product.description}</p>
-        <p>{product.category}</p>
-        <p>$ {product.price}</p>
-      </div>
+      <div>{product && <ItemDetail product={product} />}</div>
     </>
   );
 }
